@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Pix | Real Estate Photography & Videography</title>
+  <meta name="description" content="Professional real estate photography, aerial drone, 3D tours, and cinematic video. Next-day delivery. Built for realtors.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C9AE5D;
+      --gold-light: #d9c07a;
+      --gold-dark: #a8903e;
+      --black: #0a0a0a;
+      --dark: #111111;
+      --dark2: #1a1a1a;
+      --dark3: #222222;
+      --gray: #888888;
+      --light-gray: #cccccc;
+      --white: #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'Inter', system-ui, sans-serif; font-weight: 400; line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 60px; background: rgba(10,10,10,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,174,93,0.15); transition: border-color 0.3s; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 48px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--gold) !important; color: var(--black) !important; padding: 10px 24px; border-radius: 2px; font-weight: 600 !important; }
+    .nav-cta:hover { background: var(--gold-light) !important; }
+
+    /* HERO */
+    .hero { height: 100vh; min-height: 700px; position: relative; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,10,10,0.88) 40%, rgba(10,10,10,0.35) 100%), url('/images/img-aerial1.jpg') center/cover no-repeat; }
+    .hero-content { position: relative; padding: 0 60px; max-width: 660px; }
+    .hero-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,174,93,0.4); padding: 6px 14px; margin-bottom: 28px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 5.5vw, 72px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero p { font-size: 17px; color: var(--light-gray); line-height: 1.7; margin-bottom: 40px; max-width: 500px; font-weight: 300; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; background: var(--gold); color: var(--black); padding: 15px 36px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; color: var(--white); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px; transition: border-color 0.2s, color 0.2s; }
+    .btn-secondary:hover { color: var(--gold); border-color: var(--gold); }
+    .hero-stats { position: absolute; bottom: 50px; right: 60px; display: flex; gap: 48px; }
+    .hero-stat .num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--gold); display: block; line-height: 1; }
+    .hero-stat .label { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* TRUST BAR */
+    .trust-bar { background: var(--dark2); border-top: 1px solid rgba(201,174,93,0.2); border-bottom: 1px solid rgba(201,174,93,0.2); padding: 22px 60px; display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--light-gray); font-weight: 500; letter-spacing: 0.04em; }
+    .trust-icon { color: var(--gold); font-size: 16px; }
+
+    /* SECTIONS */
+    section { padding: 100px 60px; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 3.5vw, 48px); font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
+    .section-sub { font-size: 16px; color: var(--gray); max-width: 540px; line-height: 1.7; }
+
+    /* SERVICES */
+    .services { background: var(--dark); }
+    .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; flex-wrap: wrap; gap: 24px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .service-card { background: var(--dark2); padding: 44px 36px; position: relative; overflow: hidden; transition: background 0.25s; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--gold); transition: height 0.3s ease; }
+    .service-card:hover { background: var(--dark3); }
+    .service-card:hover::before { height: 100%; }
+    .service-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; color: rgba(201,174,93,0.12); line-height: 1; margin-bottom: 20px; display: block; }
+    .service-name { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+    .service-desc { font-size: 14px; color: var(--gray); line-height: 1.65; margin-bottom: 28px; }
+    .service-price { font-size: 22px; font-weight: 700; color: var(--gold); }
+    .service-price-note { font-size: 12px; color: var(--gray); margin-top: 4px; }
+
+    /* PORTFOLIO */
+    .portfolio { background: var(--black); padding-bottom: 80px; }
+    .portfolio-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 24px; }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: auto auto; gap: 4px; }
+    .portfolio-item { overflow: hidden; position: relative; }
+    .portfolio-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease, filter 0.3s ease; filter: brightness(0.85); }
+    .portfolio-item:hover img { transform: scale(1.04); filter: brightness(1); }
+    .pi-1 { grid-column: span 5; height: 340px; }
+    .pi-2 { grid-column: span 4; height: 340px; }
+    .pi-3 { grid-column: span 3; height: 340px; }
+    .pi-4 { grid-column: span 3; height: 260px; }
+    .pi-5 { grid-column: span 5; height: 260px; }
+    .pi-6 { grid-column: span 4; height: 260px; }
+    .portfolio-tag { position: absolute; bottom: 16px; left: 16px; background: rgba(10,10,10,0.8); border: 1px solid rgba(201,174,93,0.3); color: var(--gold); font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 10px; opacity: 0; transform: translateY(6px); transition: opacity 0.3s, transform 0.3s; }
+    .portfolio-item:hover .portfolio-tag { opacity: 1; transform: translateY(0); }
+
+    /* PRICING */
+    .pricing { background: var(--dark); }
+    .pricing-header { text-align: center; margin-bottom: 64px; }
+    .pricing-header .section-sub { margin: 0 auto; text-align: center; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1100px; margin: 0 auto; }
+    .pricing-card { background: var(--dark2); padding: 48px 36px; position: relative; }
+    .pricing-card.featured { background: var(--dark3); border: 1px solid rgba(201,174,93,0.4); }
+    .pricing-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--black); font-size: 10px; font-weight: 700; letter-spacing: 0.15em; padding: 5px 16px; white-space: nowrap; }
+    .pricing-tier { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .pricing-price { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+    .pricing-price sup { font-size: 24px; vertical-align: super; font-family: 'Inter', sans-serif; font-weight: 400; }
+    .pricing-note { font-size: 12px; color: var(--gray); margin-bottom: 32px; }
+    .pricing-features { list-style: none; margin-bottom: 40px; }
+    .pricing-features li { font-size: 14px; color: var(--light-gray); padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px; }
+    .pricing-features li::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 13px; flex-shrink: 0; }
+    .btn-outline { display: block; text-align: center; border: 1px solid rgba(201,174,93,0.5); color: var(--gold); padding: 13px; text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
+    .btn-outline:hover, .pricing-card.featured .btn-outline { background: var(--gold); color: var(--black); border-color: var(--gold); }
+
+    /* PROCESS */
+    .process { background: var(--black); }
+    .process-header { text-align: center; margin-bottom: 72px; }
+    .process-header .section-sub { margin: 0 auto; text-align: center; }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 36px; left: 12.5%; right: 12.5%; height: 1px; background: linear-gradient(to right, transparent, var(--gold-dark), var(--gold), var(--gold-dark), transparent); }
+    .process-step { text-align: center; padding: 0 28px; }
+    .step-circle { width: 72px; height: 72px; border-radius: 50%; background: var(--dark2); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--gold); position: relative; z-index: 1; }
+    .step-title { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+    .step-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: var(--dark); }
+    .testimonials-header { text-align: center; margin-bottom: 64px; }
+    .testimonials-header .section-sub { margin: 0 auto; text-align: center; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .testimonial-card { background: var(--dark2); padding: 44px 36px; }
+    .testimonial-quote { font-size: 48px; line-height: 0.8; color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 20px; display: block; }
+    .testimonial-text { font-size: 15px; line-height: 1.75; color: var(--light-gray); margin-bottom: 32px; font-weight: 300; }
+    .testimonial-author { display: flex; align-items: center; gap: 14px; }
+    .author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--gold-dark); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: var(--black); flex-shrink: 0; }
+    .author-name { font-size: 14px; font-weight: 600; }
+    .author-title { font-size: 12px; color: var(--gray); }
+    .stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; margin-bottom: 20px; display: block; }
+
+    /* CTA */
+    .cta-section { background: var(--dark2); border-top: 1px solid rgba(201,174,93,0.15); border-bottom: 1px solid rgba(201,174,93,0.15); padding: 100px 60px; text-align: center; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,174,93,0.06) 0%, transparent 70%); pointer-events: none; }
+    .cta-section .section-title { font-size: clamp(36px, 4vw, 56px); max-width: 680px; margin: 0 auto 20px; }
+    .cta-section .section-sub { margin: 0 auto 44px; text-align: center; max-width: 480px; }
+    .cta-group { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .turnaround-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,174,93,0.1); border: 1px solid rgba(201,174,93,0.3); color: var(--gold); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 18px; border-radius: 2px; }
+
+    /* FOOTER */
+    footer { background: var(--dark2); border-top: 1px solid rgba(201,174,93,0.15); padding: 60px 60px 40px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    .footer-logo img { height: 44px; width: auto; margin-bottom: 20px; display: block; }
+    .footer-brand p { font-size: 14px; color: var(--gray); line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { font-size: 13px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 12px; color: var(--gray); }
+    .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav { padding: 16px 32px; }
+      section { padding: 80px 32px; }
+      .hero-content { padding: 0 32px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 48px; }
+      .process-steps::before { display: none; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 460px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .trust-bar { padding: 20px 32px; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      section { padding: 64px 20px; }
+      .hero-content { padding: 0 20px; max-width: 100%; }
+      .hero-stats { position: relative; bottom: auto; right: auto; padding: 0 20px 40px; justify-content: flex-start; gap: 32px; }
+      .hero { height: auto; padding-top: 100px; flex-direction: column; justify-content: flex-start; align-items: flex-start; }
+      .trust-bar { padding: 18px 20px; gap: 18px; justify-content: flex-start; }
+      .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .services-header, .portfolio-header { flex-direction: column; align-items: flex-start; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .pi-1,.pi-2,.pi-3,.pi-4,.pi-5,.pi-6 { grid-column: span 1; height: 200px; }
+      .cta-section { padding: 64px 20px; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">
+      <img src="/images/logo.png" alt="Pro Pix">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#process">How It Works</a></li>
+      <li><a href="https://pro-pix-3d.aryeo.com/portal" class="nav-cta">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Real Estate Photography & Videography</span>
+      <h1>Listings That <em>Sell</em> Faster.</h1>
+      <p>Professional photography, aerial drone, 3D tours, and cinematic video — delivered next day. Built for realtors who close deals.</p>
+      <div class="hero-actions">
+        <a href="https://pro-pix-3d.aryeo.com/portal" class="btn-primary">Book a Shoot</a>
+        <a href="#portfolio" class="btn-secondary">View Our Work →</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">24hr</span>
+        <span class="label">Turnaround</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">500+</span>
+        <span class="label">Listings Shot</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">5★</span>
+        <span class="label">Avg. Rating</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item"><span class="trust-icon">⚡</span> Next-Day Delivery</div>
+    <div class="trust-item"><span class="trust-icon">✈</span> FAA-Certified Drone Pilots</div>
+    <div class="trust-item"><span class="trust-icon">🏆</span> HDR + Professional Editing Included</div>
+    <div class="trust-item"><span class="trust-icon">📅</span> Easy Online Booking</div>
+    <div class="trust-item"><span class="trust-icon">🎯</span> MLS-Ready Photos</div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-header reveal">
+      <div>
+        <span class="section-label">What We Offer</span>
+        <h2 class="section-title">Everything Your Listing Needs</h2>
+      </div>
+      <p class="section-sub">One company, one booking, delivered fast.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-num">01</span>
+        <div class="service-name">Photography</div>
+        <p class="service-desc">HDR interior and exterior shots, professionally edited and delivered within 24 hours. MLS-ready and optimized to stop the scroll.</p>
+        <div class="service-price">From $149</div>
+        <div class="service-price-note">Up to 25 edited photos</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-num">02</span>
+        <div class="service-name">Aerial Drone</div>
+        <p class="service-desc">FAA-certified aerial photography and video showcasing the property, neighborhood, and surrounding area from stunning heights.</p>
+        <div class="service-price">From $199</div>
+        <div class="service-price-note">Photos + video clip included</div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-num">03</span>
+        <div class="service-name">3D Virtual Tours</div>
+        <p class="service-desc">Interactive 3D walkthroughs that let buyers explore every room from anywhere. Embedded link for any listing portal.</p>
+        <div class="service-price">From $249</div>
+        <div class="service-price-note">Hosted link + embed code</div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-num">04</span>
+        <div class="service-name">Cinematic Video</div>
+        <p class="service-desc">Professionally edited listing videos combining interior footage, aerial shots, and music — perfect for social media and YouTube.</p>
+        <div class="service-price">From $299</div>
+        <div class="service-price-note">60–90 sec edited video</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-num">05</span>
+        <div class="service-name">Floor Plans</div>
+        <p class="service-desc">Accurate 2D floor plans drawn to scale. Listings with floor plans get significantly more buyer inquiries.</p>
+        <div class="service-price">From $99</div>
+        <div class="service-price-note">Delivered in 24 hours</div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-num">06</span>
+        <div class="service-name">Full Media Package</div>
+        <p class="service-desc">Photos + drone + video + 3D tour + floor plan bundled at our best rate. Everything a listing needs in one shoot.</p>
+        <div class="service-price">From $649</div>
+        <div class="service-price-note">Best value — save $200+</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="portfolio">
+    <div class="portfolio-header reveal">
+      <div>
+        <span class="section-label">Our Work</span>
+        <h2 class="section-title">The Photography Speaks</h2>
+      </div>
+      <a href="https://www.propix3d.com/work" class="btn-secondary">See Full Portfolio →</a>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-item pi-1 reveal">
+        <img src="/images/img-living.jpg" alt="Living room photography">
+        <span class="portfolio-tag">Interior</span>
+      </div>
+      <div class="portfolio-item pi-2 reveal reveal-delay-1">
+        <img src="/images/img-kitchen.jpg" alt="Kitchen photography">
+        <span class="portfolio-tag">Kitchen</span>
+      </div>
+      <div class="portfolio-item pi-3 reveal reveal-delay-2">
+        <img src="/images/img-exterior1.jpg" alt="Exterior photography">
+        <span class="portfolio-tag">Exterior</span>
+      </div>
+      <div class="portfolio-item pi-4 reveal">
+        <img src="/images/img-bedroom.jpg" alt="Bedroom photography">
+        <span class="portfolio-tag">Bedroom</span>
+      </div>
+      <div class="portfolio-item pi-5 reveal reveal-delay-1">
+        <img src="/images/img-aerial2.jpg" alt="Aerial drone photography">
+        <span class="portfolio-tag">Aerial Drone</span>
+      </div>
+      <div class="portfolio-item pi-6 reveal reveal-delay-2">
+        <img src="/images/img-pool.jpg" alt="Pool & exterior">
+        <span class="portfolio-tag">Pool & Exterior</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="pricing-header reveal">
+      <span class="section-label">Transparent Pricing</span>
+      <h2 class="section-title">No Hidden Fees. Ever.</h2>
+      <p class="section-sub">Simple packages built for realtors. Add-ons available at checkout.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price"><sup>$</sup>149</div>
+        <div class="pricing-note">Up to 2,000 sq ft</div>
+        <ul class="pricing-features">
+          <li>25 HDR Photos</li>
+          <li>Professional Editing</li>
+          <li>MLS-Ready Delivery</li>
+          <li>24-Hour Turnaround</li>
+          <li>Online Download Portal</li>
+        </ul>
+        <a href="https://pro-pix-3d.aryeo.com/portal" class="btn-outline">Book This Package</a>
+      </div>
+      <div class="pricing-card featured reveal reveal-delay-1">
+        <div class="pricing-tier">Pro</div>
+        <div class="pricing-price"><sup>$</sup>349</div>
+        <div class="pricing-note">Up to 3,500 sq ft</div>
+        <ul class="pricing-features">
+          <li>35 HDR Photos</li>
+          <li>Aerial Drone Photos</li>
+          <li>Cinematic Listing Video</li>
+          <li>Professional Editing</li>
+          <li>24-Hour Turnaround</li>
+          <li>Social Media Crops</li>
+        </ul>
+        <a href="https://pro-pix-3d.aryeo.com/portal" class="btn-outline">Book This Package</a>
+      </div>
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pricing-tier">Full Media</div>
+        <div class="pricing-price"><sup>$</sup>649</div>
+        <div class="pricing-note">Any size property</div>
+        <ul class="pricing-features">
+          <li>40+ HDR Photos</li>
+          <li>Aerial Photos + Video</li>
+          <li>3D Virtual Tour</li>
+          <li>Cinematic Video</li>
+          <li>2D Floor Plan</li>
+          <li>Everything Above</li>
+        </ul>
+        <a href="https://pro-pix-3d.aryeo.com/portal" class="btn-outline">Book This Package</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="process-header reveal">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-title">Booked in Minutes. Delivered Tomorrow.</h2>
+      <p class="section-sub">A smooth experience from first click to final download.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-circle">1</div>
+        <div class="step-title">Book Online</div>
+        <p class="step-desc">Pick your package and a date. Takes under 2 minutes at aryeo.com/portal.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-circle">2</div>
+        <div class="step-title">We Show Up</div>
+        <p class="step-desc">Your photographer arrives on time, fully equipped — no coordination stress.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-circle">3</div>
+        <div class="step-title">We Edit</div>
+        <p class="step-desc">Professional post-processing overnight. Every photo polished to perfection.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-circle">4</div>
+        <div class="step-title">You Download</div>
+        <p class="step-desc">MLS-ready files in your portal within 24 hours. Ready to list.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="testimonials-header reveal">
+      <span class="section-label">What Agents Say</span>
+      <h2 class="section-title">Trusted by Top Realtors</h2>
+      <p class="section-sub">Real agents. Real listings. Real results.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <span class="stars">★★★★★</span>
+        <span class="testimonial-quote">"</span>
+        <p class="testimonial-text">My listings sell faster since I switched to Pro Pix. The photos are stunning and they always deliver the next morning. This is a no-brainer for any serious realtor.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SM</div>
+          <div>
+            <div class="author-name">Sarah Mitchell</div>
+            <div class="author-title">Realtor® — RE/MAX</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <span class="stars">★★★★★</span>
+        <span class="testimonial-quote">"</span>
+        <p class="testimonial-text">I've tried 3 other photographers. None of them come close to the quality or reliability. The drone shots alone are worth every penny — buyers comment on them every time.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JD</div>
+          <div>
+            <div class="author-name">James Donovan</div>
+            <div class="author-title">Listing Agent — Coldwell Banker</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <span class="stars">★★★★★</span>
+        <span class="testimonial-quote">"</span>
+        <p class="testimonial-text">The online booking is so easy. I schedule everything in 2 minutes and get photos back before I need them. Pro Pix has made my whole marketing process smoother.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">KL</div>
+          <div>
+            <div class="author-name">Karen Lee</div>
+            <div class="author-title">Broker — Keller Williams</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <span class="section-label">Ready to Get Started?</span>
+    <h2 class="section-title">Your Next Listing Deserves Better Photos.</h2>
+    <p class="section-sub">Book online in minutes. We'll handle the rest.</p>
+    <div class="cta-group">
+      <a href="https://pro-pix-3d.aryeo.com/portal" class="btn-primary">Book a Shoot Now</a>
+      <div class="turnaround-badge">⚡ 24-Hour Turnaround Guaranteed</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="/images/logo.png" alt="Pro Pix"></div>
+        <p>Real estate photography and media built for agents who take their listings seriously. Fast, professional, always delivered next day.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Photography</a></li>
+          <li><a href="#services">Aerial Drone</a></li>
+          <li><a href="#services">3D Virtual Tours</a></li>
+          <li><a href="#services">Cinematic Video</a></li>
+          <li><a href="#services">Floor Plans</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://www.propix3d.com/work">Portfolio</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#process">How It Works</a></li>
+          <li><a href="https://pro-pix-3d.aryeo.com/portal">Book Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://pro-pix-3d.aryeo.com/portal">Book Online</a></li>
+          <li><a href="https://www.propix3d.com">propix3d.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Pro Pix. All rights reserved.</p>
+      <p>Built for realtors who close deals.</p>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.style.borderBottomColor = window.scrollY > 60 ? 'rgba(201,174,93,0.3)' : 'rgba(201,174,93,0.15)';
+    });
+  </script>
+</body>
+</html>
